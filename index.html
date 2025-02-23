@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, orientation=landscape"
+    />
+    <title>Code Controle</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+        transition: background 0.5s;
+      }
+      .container {
+        width: 90%;
+        max-width: 400px;
+      }
+      input {
+        width: 100%;
+        padding: 15px;
+        font-size: 24px;
+        margin: 10px 0;
+        text-align: center;
+      }
+      button {
+        width: 100%;
+        padding: 15px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .message {
+        font-size: 32px;
+        font-weight: bold;
+        color: white;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="inputContainer">
+      <label for="code1">Code 1</label>
+      <input type="text" id="code1" maxlength="10" />
+      <label for="code2">Code 2</label>
+      <input type="text" id="code2" maxlength="10" />
+      <button onclick="checkCode()">Controleren</button>
+    </div>
+    <div id="message" class="message hidden"></div>
+
+    <script>
+      const validCodes = {
+        "5843,3498": "Open envelop 3",
+        "1234,5678": "Open envelop 1",
+        "9876,5432": "Open envelop 2",
+      };
+
+      function checkCode() {
+        const code1 = document.getElementById("code1").value.trim();
+        const code2 = document.getElementById("code2").value.trim();
+        const combinedCode = `${code1},${code2}`;
+        const message = document.getElementById("message");
+        const inputContainer = document.getElementById("inputContainer");
+
+        if (validCodes[combinedCode]) {
+          document.body.style.background = "green";
+          message.innerHTML = `👍 ${validCodes[combinedCode]}`;
+        } else {
+          document.body.style.background = "red";
+          message.textContent = "⛔️ Code niet geaccepteerd";
+        }
+
+        inputContainer.classList.add("hidden");
+        message.classList.remove("hidden");
+
+        setTimeout(resetPage, 5000);
+      }
+
+      function resetPage() {
+        document.body.style.background = "white";
+        document.getElementById("code1").value = "";
+        document.getElementById("code2").value = "";
+        document.getElementById("message").textContent = "";
+        document.getElementById("message").classList.add("hidden");
+        document.getElementById("inputContainer").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
