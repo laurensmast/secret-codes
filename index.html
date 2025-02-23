@@ -83,7 +83,7 @@
       };
 
       const finalCodes = {
-        "1090,4413": "https://youtu.be/wBRhsm633M0?si=QZouXDzoXzhOCMmo",
+        "1090,4413": "youtube://youtu.be/wBRhsm633M0?si=QZouXDzoXzhOCMmo",
       };
 
       function checkCode() {
@@ -99,7 +99,7 @@
         } else if (finalCodes[combinedCode]) {
           document.body.style.background = "green";
           message.innerHTML = `🏆 Gefeliciteerd jullie hebben het mysterie opgelost!<br><br>We gaan naar...`;
-          setTimeout(showSolution, 4000);
+          setTimeout(showSolution, 2000);
         } else {
           document.body.style.background = "red";
           message.innerHTML = "⛔️ Code niet geaccepteerd";
@@ -108,7 +108,7 @@
         inputContainer.classList.add("hidden");
         message.classList.remove("hidden");
 
-        setTimeout(resetPage, 5000);
+        setTimeout(resetPage, 2000);
       }
 
       function showSolution() {
